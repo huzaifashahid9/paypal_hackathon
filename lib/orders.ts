@@ -91,6 +91,7 @@ async function recordDecisions(shop: Shop, pass: Pass | null, orderId: string | 
 }
 
 async function openPayPalOrder(order: Order, shop: Shop): Promise<Order> {
+  if (!paypal.paypalConfigured()) throw new OrderInputError('This shop has not connected PayPal yet, so the order cannot be paid. Nothing was charged.');
   const db = await getDb();
   const created = await paypal.createOrder({
     orderId: order.id,

@@ -2,6 +2,7 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 
 // PayPal is faked here: these tests cover our own flow, not PayPal's API.
 vi.mock('@/lib/paypal', () => ({
+  paypalConfigured: () => true,
   createOrder: vi.fn(async (i: { orderId: string }) => ({ id: `PP-${i.orderId.slice(0, 8)}`, approveUrl: `https://www.sandbox.paypal.com/checkoutnow?token=PP-${i.orderId.slice(0, 8)}` })),
   captureOrder: vi.fn(async (id: string) => ({ captureId: `CAP-${id}`, status: 'COMPLETED', amountCents: 0 })),
   refundCapture: vi.fn(async () => ({ id: 'REF-1', status: 'COMPLETED' })),
