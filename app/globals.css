@@ -81,3 +81,65 @@ code, .mono { font-family: var(--font-mono); font-size: 13px; }
 .chip.blocked { color: var(--blocked); background: color-mix(in srgb, var(--blocked) 12%, transparent); }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Buttons and forms */
+.btn { font: inherit; font-weight: 600; font-size: 14px; padding: 8px 14px; border-radius: var(--radius-input); border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; }
+.btn:hover { border-color: var(--text-muted); }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: var(--bg); }
+.btn.primary:hover { background: var(--brand-hover); border-color: var(--brand-hover); }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.muted { color: var(--text-muted); }
+.error { color: var(--blocked); background: color-mix(in srgb, var(--blocked) 10%, transparent); padding: 12px 16px; border-radius: var(--radius-input); }
+.chip.muted { color: var(--text-muted); background: color-mix(in srgb, var(--text-muted) 14%, transparent); }
+.field { display: grid; gap: 6px; margin-bottom: 16px; }
+.field label { font-size: 14px; font-weight: 600; }
+.field input, .field select { font: inherit; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-input); background: var(--surface); color: var(--text); width: 100%; }
+.field small { color: var(--text-muted); }
+
+/* Trust Dashboard */
+.dash { max-width: 1320px; margin: 0 auto; padding: 24px 16px 48px; }
+.dash-top { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+.dash-top h1 { font-size: 32px; }
+.shop-switch { display: flex; gap: 4px; flex-wrap: wrap; margin-left: auto; }
+.shop-switch a { padding: 6px 12px; border-radius: 999px; text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; }
+.shop-switch a[aria-current='page'] { background: var(--brand-tint); color: var(--text); }
+.live { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--allowed); }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--allowed); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 16px; display: grid; gap: 4px; }
+.kpi span { font-size: 13px; color: var(--text-muted); }
+.kpi strong { font-family: var(--font-display); font-size: 32px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kpi strong.mono { font-family: var(--font-mono); font-size: 26px; }
+.kpi.held strong { color: var(--held); }
+.kpi.blocked strong { color: var(--blocked); }
+.dash-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; align-items: start; }
+@media (max-width: 960px) { .dash-grid { grid-template-columns: minmax(0, 1fr); } }
+.card.flush { padding: 16px; }
+.card h2 { font-size: 20px; margin-bottom: 12px; }
+.side { display: grid; gap: 16px; }
+.queue-item { border-top: 1px solid var(--border); padding: 12px 0; }
+.queue-item:first-of-type { border-top: 0; padding-top: 0; }
+.queue-item p { margin: 4px 0; font-size: 14px; color: var(--text); }
+.queue-item p.muted { color: var(--text-muted); }
+.queue-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px; }
+.actions { display: flex; gap: 8px; margin-top: 8px; }
+.ag-cell.mono { font-family: var(--font-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+
+/* Buyer Pass */
+.pass-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; max-width: 520px; }
+.pass-main { padding: 24px; }
+.pass-code { font-family: var(--font-mono); font-size: clamp(22px, 5vw, 32px); font-weight: 500; letter-spacing: 0.04em; margin: 8px 0 16px; word-break: break-all; }
+.pass-stub { border-top: 2px dashed var(--border); padding: 16px 24px; display: flex; gap: 24px; flex-wrap: wrap; background: var(--bg); }
+.pass-stub div { display: grid; }
+.pass-stub span { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.pass-stub strong { font-family: var(--font-mono); font-size: 16px; }
+
+/* Receipt */
+.receipt { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); max-width: 520px; margin: 0 auto; padding: 24px; }
+.receipt table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.receipt td { padding: 6px 0; border-bottom: 1px solid var(--border); }
+.receipt td:last-child { text-align: right; font-family: var(--font-mono); }
+.paypal-zone { background: var(--paypal-zone); border-radius: var(--radius-input); padding: 12px 16px; font-size: 13px; display: grid; gap: 4px; overflow-wrap: anywhere; }
+.ag-cell .chip { line-height: 20px; vertical-align: middle; }

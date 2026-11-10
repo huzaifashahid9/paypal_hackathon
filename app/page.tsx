@@ -15,6 +15,14 @@ export default async function Home() {
           Agent-ready in 60 seconds and paid through PayPal. The merchant decides what agents can buy. The buyer decides
           what their agent can spend.
         </p>
+        <p style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 24 }}>
+          <a className="btn primary" href="/dashboard" style={{ textDecoration: 'none' }}>
+            Open the Trust Dashboard
+          </a>
+          <a className="btn" href="/pass" style={{ textDecoration: 'none' }}>
+            Create a Buyer Pass
+          </a>
+        </p>
       </section>
       <section className="cards">
         {shops.map((shop) => (
