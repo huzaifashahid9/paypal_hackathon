@@ -1,6 +1,5 @@
 import { createHash } from 'node:crypto';
-import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
-import { buildShopServer } from '@/lib/mcp/server';
+import { serveShopMcp } from '@/lib/mcp/http';
 import { getShopBySlug } from '@/lib/shops';
 
 export const dynamic = 'force-dynamic';
@@ -26,10 +25,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ sho
   const day = new Date().toISOString().slice(0, 10);
   const sessionId = request.headers.get('x-openshelf-session') ?? createHash('sha256').update(`${shop.id}|${userAgent}|${ip}|${day}`).digest('hex').slice(0, 16);
 
-  const server = await buildShopServer(shop, { agentClient: agentName(userAgent), sessionId });
-  const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
-  await server.connect(transport);
-  return transport.handleRequest(request);
+  return serveShopMcp(shop, request, { agentClient: agentName(userAgent), sessionId });
 }
 
 const notAllowed = (): Response => Response.json({ jsonrpc: '2.0', error: { code: -32000, message: 'Method not allowed. Use POST.' }, id: null }, { status: 405, headers: { Allow: 'POST' } });
