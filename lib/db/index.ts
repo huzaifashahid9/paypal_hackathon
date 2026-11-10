@@ -25,6 +25,11 @@ async function connect(): Promise<Db> {
     db = drizzle(new PGlite(dir === 'memory' ? undefined : dir), { schema }) as unknown as Db;
   }
   await ensureSchema(db);
+  // Demo shops are always present, whichever page or agent touches the app first.
+  if (process.env.SEED_DEMO !== 'false') {
+    const { seedDemoShops } = await import('@/lib/seed');
+    await seedDemoShops(db);
+  }
   return db;
 }
 
