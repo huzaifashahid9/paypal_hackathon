@@ -19,6 +19,9 @@ export default async function Home() {
           <a className="btn primary" href="/onboard" style={{ textDecoration: 'none' }}>
             Open your shop to agents
           </a>
+          <a className="btn" href="/demo" style={{ textDecoration: 'none' }}>
+            Run the one-click demo
+          </a>
           <a className="btn" href="/dashboard" style={{ textDecoration: 'none' }}>
             Open the Trust Dashboard
           </a>
