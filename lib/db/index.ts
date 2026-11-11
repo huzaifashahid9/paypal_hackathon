@@ -21,7 +21,9 @@ async function connect(): Promise<Db> {
     // No DATABASE_URL: embedded Postgres on disk, so `npm run dev` works with zero setup.
     const { PGlite } = await import('@electric-sql/pglite');
     const { drizzle } = await import('drizzle-orm/pglite');
-    const dir = process.env.PGLITE_DIR ?? '.pglite';
+    // Vercel's filesystem is read-only except /tmp. Data there is per instance and is lost on a
+    // cold start, so a real deployment should set DATABASE_URL (Neon free tier).
+    const dir = process.env.PGLITE_DIR ?? (process.env.VERCEL ? '/tmp/openshelf-pglite' : '.pglite');
     db = drizzle(new PGlite(dir === 'memory' ? undefined : dir), { schema }) as unknown as Db;
   }
   await ensureSchema(db);
