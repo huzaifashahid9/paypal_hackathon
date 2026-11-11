@@ -4,6 +4,12 @@ Target: a public URL that stays up through judging (Dec 1–15, 2026), at $0.
 
 ## 1. Database: Neon free tier
 
+**Quickest way:** in your Vercel project, open **Storage → Create Database → Neon** (free, no card). Vercel creates it and sets `DATABASE_URL` for you. Redeploy afterwards.
+
+Without `DATABASE_URL` the app still boots on Vercel, using a temporary database in `/tmp`, but each server instance has its own copy and it is wiped on a cold start. Orders made on `/demo` may then not show up on `/dashboard`. Fine for a first look, not for judging.
+
+Or by hand:
+
 1. Sign up at [neon.tech](https://neon.tech) and create a project (region close to your Vercel region).
 2. Copy the **pooled** connection string. It looks like `postgresql://user:pass@ep-xxx-pooler.region.aws.neon.tech/neondb?sslmode=require`.
 
