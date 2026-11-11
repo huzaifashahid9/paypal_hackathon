@@ -1,6 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { schema, type Db } from '@/lib/db';
 import { newId } from '@/lib/id';
+import { scoreReadiness } from '@/lib/readiness';
 import { SEED_SHOPS } from '@/lib/seed-data';
 
 /** Insert the demo shops if they are missing. Safe to run more than once. */
@@ -16,7 +17,7 @@ export async function seedDemoShops(db: Db): Promise<{ created: string[] }> {
       name: shop.name,
       tagline: shop.tagline,
       about: shop.about,
-      readinessScore: 92,
+      readinessScore: scoreReadiness({ about: shop.about, products: shop.products, rules: shop.rules.map((r) => r.rule) }).score,
       publishedAt: new Date(),
     });
     await db.insert(schema.products).values(shop.products.map((p) => ({ id: newId(), shopId, ...p })));

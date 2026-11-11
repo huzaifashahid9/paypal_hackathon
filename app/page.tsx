@@ -16,7 +16,10 @@ export default async function Home() {
           what their agent can spend.
         </p>
         <p style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 24 }}>
-          <a className="btn primary" href="/dashboard" style={{ textDecoration: 'none' }}>
+          <a className="btn primary" href="/onboard" style={{ textDecoration: 'none' }}>
+            Open your shop to agents
+          </a>
+          <a className="btn" href="/dashboard" style={{ textDecoration: 'none' }}>
             Open the Trust Dashboard
           </a>
           <a className="btn" href="/pass" style={{ textDecoration: 'none' }}>
@@ -29,7 +32,7 @@ export default async function Home() {
           <div className="card" key={shop.id}>
             <h2>{shop.name}</h2>
             <p>{shop.tagline}</p>
-            <code>/s/{shop.slug}/mcp</code>
+            <a href={`/s/${shop.slug}`}>View shop</a>
           </div>
         ))}
       </section>
