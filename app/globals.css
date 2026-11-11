@@ -1,0 +1,83 @@
+/* OpenShelf design tokens: a warm corner shop with a bank-grade ledger. */
+:root {
+  --bg: #fafaf7;
+  --surface: #ffffff;
+  --border: #e7e5e4;
+  --text: #1c1917;
+  --text-muted: #78716c;
+  --brand: #0f766e;
+  --brand-hover: #115e59;
+  --brand-tint: #ccfbf1;
+  --allowed: #15803d;
+  --held: #b45309;
+  --blocked: #b91c1c;
+  --agent: #6d28d9;
+  --paypal-zone: #f1f5f9;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-input: 8px;
+  --radius-card: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0c0a09;
+    --surface: #1c1917;
+    --border: #292524;
+    --text: #fafaf9;
+    --text-muted: #a8a29e;
+    --brand: #2dd4bf;
+    --brand-hover: #5eead4;
+    --brand-tint: #134e4a;
+    --allowed: #4ade80;
+    --held: #fbbf24;
+    --blocked: #f87171;
+    --agent: #c4b5fd;
+    --paypal-zone: #1e293b;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0c0a09;
+  --surface: #1c1917;
+  --border: #292524;
+  --text: #fafaf9;
+  --text-muted: #a8a29e;
+  --brand: #2dd4bf;
+  --brand-hover: #5eead4;
+  --brand-tint: #134e4a;
+  --allowed: #4ade80;
+  --held: #fbbf24;
+  --blocked: #f87171;
+  --agent: #c4b5fd;
+  --paypal-zone: #1e293b;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--brand); }
+h1, h2 { font-family: var(--font-display); line-height: 1.2; font-weight: 600; margin: 0; }
+code, .mono { font-family: var(--font-mono); font-size: 13px; }
+
+.page { max-width: 960px; margin: 0 auto; padding: 48px 16px; }
+.eyebrow { color: var(--brand); font-weight: 600; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(32px, 6vw, 56px); margin: 12px 0 16px; }
+.hero p { font-size: 20px; color: var(--text-muted); max-width: 640px; margin: 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 48px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 24px; }
+.card h2 { font-size: 24px; margin-bottom: 4px; }
+.card p { color: var(--text-muted); margin: 0 0 12px; font-size: 14px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.chip.allowed { color: var(--allowed); background: color-mix(in srgb, var(--allowed) 12%, transparent); }
+.chip.held { color: var(--held); background: color-mix(in srgb, var(--held) 12%, transparent); }
+.chip.blocked { color: var(--blocked); background: color-mix(in srgb, var(--blocked) 12%, transparent); }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
