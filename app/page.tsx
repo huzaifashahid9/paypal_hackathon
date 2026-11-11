@@ -1,11 +1,9 @@
 import { connection } from 'next/server';
 import { getDb, schema } from '@/lib/db';
-import { seedDemoShops } from '@/lib/seed';
 
 export default async function Home() {
   await connection();
   const db = await getDb();
-  await seedDemoShops(db);
   const shops = await db.select().from(schema.shops);
 
   return (
